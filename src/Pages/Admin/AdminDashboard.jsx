@@ -188,12 +188,14 @@ function AdminDashboard() {
           <input
             type="text"
             readOnly
-            value={`https://yourprofilelink.com/${username}`} // Use the username to dynamically update the profile link
+            value={`https://testimono.vercel.app/testimony/me/${username}`} // Use the username to dynamically update the profile link
             className="border p-2 rounded-md w-full"
           />
           <button
             onClick={() =>
-              handleCopy(`https://yourprofilelink.com/${username}`)
+              handleCopy(
+                `https://testimono.vercel.app/testimony/me/${username}`
+              )
             } // Copy the updated profile link
             className="ml-2 bg-blue-600 text-white p-2 rounded-md"
           >
@@ -210,13 +212,13 @@ function AdminDashboard() {
           <input
             type="text"
             readOnly
-            value={`<iframe src='https://youriframeurl.com/${username}'></iframe>`} // Use the username to dynamically update the iframe URL
+            value={`<iframe src='https://testimono.vercel.app/testimony/view/${username}'></iframe>`} // Use the username to dynamically update the iframe URL
             className="border p-2 rounded-md w-full"
           />
           <button
             onClick={() =>
               handleCopy(
-                `<iframe src='https://youriframeurl.com/${username}'></iframe>`
+                `<iframe src='https://testimono.vercel.app/testimony/view/${username}'></iframe>`
               )
             } // Copy the iframe code
             className="ml-2 bg-blue-600 text-white p-2 rounded-md"
