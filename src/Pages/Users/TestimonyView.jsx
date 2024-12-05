@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom"; // Use react-router-dom's useParams
 import authUsage from "../../../authStore/authUsage";
-import "./Styles.css";
 
 const TestimonialPage = () => {
-  const { username } = useParams();
+  const { username } = useParams(); // Capture username from the URL
   const [testimonials, setTestimonials] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -18,7 +17,7 @@ const TestimonialPage = () => {
 
     const fetchTestimonials = async () => {
       try {
-        console.log("Fetching testimonials for username:", username);
+        console.log("Fetching testimonials for username:", username); // Log the username to ensure it's correct
         const data = await authUsage.getTestimonialByUsername(username);
         setTestimonials(data);
       } catch (error) {
@@ -29,7 +28,7 @@ const TestimonialPage = () => {
     };
 
     fetchTestimonials();
-  }, [username]);
+  }, [username]); // Re-fetch when the username changes
 
   if (loading) {
     return (
@@ -43,10 +42,15 @@ const TestimonialPage = () => {
     return <div>Error: {error}</div>;
   }
 
+  // Function to generate star ratings using HTML codes
   const renderStars = (rating) => {
     let stars = "";
     for (let i = 1; i <= 5; i++) {
-      stars += i <= rating ? "&#9733;" : "&#9734;";
+      if (i <= rating) {
+        stars += "&#9733;"; // Filled star (gold)
+      } else {
+        stars += "&#9734;"; // Empty star
+      }
     }
     return (
       <span
@@ -64,27 +68,25 @@ const TestimonialPage = () => {
       {testimonials.length === 0 ? (
         <p className="text-center text-gray-600">No testimonials available.</p>
       ) : (
-        <div className="w-full overflow-hidden">
-          <div
-            className={`flex flex-wrap ${
-              testimonials.length > 4 ? "justify-start" : "justify-center"
-            } gap-6`}
-          >
-            {testimonials.map((testimony, index) => (
-              <div
-                key={index}
-                className="w-64 bg-white p-4 rounded-lg shadow-lg"
-              >
-                <p className="text-gray-800 font-semibold">
-                  {testimony.fullname}
-                </p>
-                <p className="text-gray-600 mt-2">{testimony.message}</p>
-                <div className="flex mt-2">
-                  {renderStars(Number(testimony.rating))}
-                </div>
+        <div
+          className={`flex ${
+            testimonials.length > 4 ? "overflow-x-auto" : "justify-center"
+          } space-x-6`}
+        >
+          {testimonials.map((testimony, index) => (
+            <div
+              key={index}
+              className="flex-shrink-0 w-64 bg-white p-4 rounded-lg shadow-lg"
+            >
+              <p className="text-gray-800 font-semibold">
+                {testimony.fullname}
+              </p>
+              <p className="text-gray-600 mt-2">{testimony.message}</p>
+              <div className="flex mt-2">
+                {renderStars(Number(testimony.rating))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       )}
     </div>
