@@ -194,7 +194,7 @@ function AdminDashboard() {
           <button
             onClick={() =>
               handleCopy(
-                `https://testimono.vercel.app/testimonies/me/${username}`
+                `https://testimono.vercel.app/testimony/me/${username}`
               )
             } // Copy the updated profile link
             className="ml-2 bg-blue-600 text-white p-2 rounded-md"
@@ -218,7 +218,7 @@ function AdminDashboard() {
           <button
             onClick={() =>
               handleCopy(
-                `<iframe src='https://testimono.vercel.app/testimony/view/${username}'></iframe>`
+                `<iframe src='https://testimono.vercel.app/testimonies/view/${username}'></iframe>`
               )
             } // Copy the iframe code
             className="ml-2 bg-blue-600 text-white p-2 rounded-md"
