@@ -204,6 +204,12 @@ function AdminDashboard() {
         </div>
       </section>
 
+      {/* <iframe
+        src="https://testimono.vercel.app/testimonies/view/dtechoracle"
+        width="100%"
+        height="300"
+      ></iframe> */}
+
       <section className="bg-white p-6 rounded-lg shadow">
         <h2 className="text-xl font-semibold text-gray-800 mb-4">
           Embed iFrame
@@ -212,13 +218,15 @@ function AdminDashboard() {
           <input
             type="text"
             readOnly
-            value={`<iframe src='https://testimono.vercel.app/testimony/view/${username}'></iframe>`} // Use the username to dynamically update the iframe URL
+            value={`<iframe src='https://testimono.vercel.app/testimonies/view/${username}' width="100%"
+        height="300"></iframe>`} // Use the username to dynamically update the iframe URL
             className="border p-2 rounded-md w-full"
           />
           <button
             onClick={() =>
               handleCopy(
-                `<iframe src='https://testimono.vercel.app/testimonies/view/${username}'></iframe>`
+                `<iframe src='https://testimono.vercel.app/testimonies/view/${username}' width="100%"
+        height="300"></iframe>`
               )
             } // Copy the iframe code
             className="ml-2 bg-blue-600 text-white p-2 rounded-md"
