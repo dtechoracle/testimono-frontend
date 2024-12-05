@@ -194,7 +194,7 @@ function AdminDashboard() {
           <button
             onClick={() =>
               handleCopy(
-                `https://testimono.vercel.app/testimony/me/${username}`
+                `https://testimono.vercel.app/testimonies/me/${username}`
               )
             } // Copy the updated profile link
             className="ml-2 bg-blue-600 text-white p-2 rounded-md"
