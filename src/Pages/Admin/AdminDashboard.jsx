@@ -218,15 +218,13 @@ function AdminDashboard() {
           <input
             type="text"
             readOnly
-            value={`<iframe src='https://testimono.vercel.app/testimonies/view/${username}' width="100%"
-        height="300"></iframe>`} // Use the username to dynamically update the iframe URL
+            value={`<iframe src='https://testimono.vercel.app/testimonies/view/${username}' width="100%" height="300"></iframe>`} // Use the username to dynamically update the iframe URL
             className="border p-2 rounded-md w-full"
           />
           <button
             onClick={() =>
               handleCopy(
-                `<iframe src='https://testimono.vercel.app/testimonies/view/${username}' width="100%"
-        height="300"></iframe>`
+                `<iframe src='https://testimono.vercel.app/testimonies/view/${username}' width="100%" height="300"></iframe>`
               )
             } // Copy the iframe code
             className="ml-2 bg-blue-600 text-white p-2 rounded-md"
