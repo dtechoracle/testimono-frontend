@@ -29,13 +29,18 @@ function Signup() {
         formData.email,
         formData.password
       );
-      console.log("Signup successful:", response);
 
-      // Redirect to the login page or another route upon successful signup
-      navigate("/login"); // Change this to the route you want to redirect to after signup
+      if (response.status === "succcess") {
+        navigate("/login");
+      } else {
+        setError(
+          response.message || "Email or username has been taken by another user"
+        );
+      }
+      console.log("Signup successful:", response);
     } catch (err) {
       // Display error message if signup fails
-      setError("Signup failed. Please try again.");
+      setError(err.message); // Show the specific error message from the backend
       console.error("Signup failed:", err.message);
     } finally {
       setIsLoading(false); // Reset loading state
@@ -49,6 +54,7 @@ function Signup() {
           Sign Up for Testimono
         </h2>
         {error && <p className="text-red-600 text-center">{error}</p>}
+
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label htmlFor="name" className="block text-gray-700">

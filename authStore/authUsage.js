@@ -26,14 +26,27 @@ export const RegisterUser = async (username, email, password) => {
       password,
     });
 
-    if (response.token) {
-      localStorage.setItem("token", response.token);
-      console.log("User Logged in successfully:", response);
+    // Check if the response data is available and structured as expected
+    if (response) {
+      return response;
+    } else {
+      // If no status or an error is returned, throw an error with a meaningful message
+      throw new Error(
+        response?.data?.message || "Signup failed. Please try again."
+      );
     }
-    return response;
   } catch (error) {
-    console.log("Signup Failed:", error.message);
-    throw error;
+    // If the error is from the API response, log and throw the message
+    if (error.response) {
+      console.error("Signup Failed:", error.response.data);
+      throw new Error(
+        error.response.data.message || "Signup failed. Please try again."
+      );
+    } else {
+      // If there's no response (e.g., network error), handle that case
+      console.error("Signup Failed:", error.message);
+      throw new Error("Signup failed. Please try again.");
+    }
   }
 };
 
